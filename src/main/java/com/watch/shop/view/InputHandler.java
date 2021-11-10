@@ -6,6 +6,6 @@ public class InputHandler {
     private final Scanner scanner = new Scanner(System.in);
 
     public String readString() {
-        return scanner.next();
+        return scanner.nextLine();
     }
 }

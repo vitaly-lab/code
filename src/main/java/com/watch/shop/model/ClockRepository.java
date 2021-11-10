@@ -15,7 +15,8 @@ public class ClockRepository {
         clocks.add(new Clock("Casio", "green", "quartz", BigDecimal.valueOf(75.00), LocalDate.of(2021, 10, 12)));
         clocks.add(new Clock("Omega", "yellow", "arms", BigDecimal.valueOf(210.00), LocalDate.of(2021, 1, 31)));
     }
-    public List<Clock> getClocksRepository(){
+
+    public List<Clock> getClocksRepository() {
         return clocks;
     }
 }

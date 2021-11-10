@@ -51,7 +51,7 @@ public class Controller {
                 view.printMessage(TOTAL_SUM + model.sumPrice());
                 break;
             case 6:
-                showMMenu();
+                showMenu();
                 addProduct();
                 showClocks(model.getModelClocks());
                 break;
@@ -59,7 +59,7 @@ public class Controller {
     }
 
     private int readCommand() {
-       return Integer.parseInt(inputHandler.readString());
+        return Integer.parseInt(inputHandler.readString());
     }
 
     private void showClocks(List<Clock> clockList) {
@@ -72,15 +72,15 @@ public class Controller {
     }
 
     private void mainMenu() {
-        view.printMessage( MAIN_MENU );
+        view.printMessage(MAIN_MENU);
     }
 
     private void showStartMessage() {
-        view.printMessage(ENTER_NUMBER );
+        view.printMessage(ENTER_NUMBER);
     }
 
-    private void showMMenu() {
-        view.printMessage( ENTER_PRODUCT_DATA );
+    private void showMenu() {
+        view.printMessage(ENTER_PRODUCT_DATA);
     }
 
     private void addProduct() {
@@ -88,34 +88,34 @@ public class Controller {
 
         for (String line : inputLines) {
             model.addClock(buildClock(line));
-            }
         }
+    }
 
     private List<String> readLinesFromConsole() {
         List<String> lines = new ArrayList<>();
         while (true) {
-                String line = inputHandler.readString();
+            String line = inputHandler.readString();
 
-                if (line.isEmpty()) {
-                   break;
-                }
-                lines.add(line);
+            if (line.isEmpty()) {
+                break;
             }
-        return lines;
+            lines.add(line);
         }
+        return lines;
+    }
 
-   private Clock buildClock(String inputData){
-       String[] clockAttributes = inputData.split(" ");
-       String name = clockAttributes[0];
-       String color = clockAttributes[1];
-       String systemWork = clockAttributes[2];
-       BigDecimal price = new BigDecimal(clockAttributes[3]);
-       String date = clockAttributes[4];
+    private Clock buildClock(String inputData) {
+        String[] clockAttributes = inputData.split(" ");
+        String name = clockAttributes[0];
+        String color = clockAttributes[1];
+        String systemWork = clockAttributes[2];
+        BigDecimal price = new BigDecimal(clockAttributes[3]);
+        String date = clockAttributes[4];
 
-       DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-       LocalDate localDate = LocalDate.parse(date, format);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        LocalDate localDate = LocalDate.parse(date, format);
 
-       return  new Clock(name, color, systemWork, price, localDate);
-   }
+        return new Clock(name, color, systemWork, price, localDate);
+    }
 }
 

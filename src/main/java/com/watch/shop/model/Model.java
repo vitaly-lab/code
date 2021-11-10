@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Model {
 
-   List<Clock> modelClocks = new ClockRepository().getClocksRepository();
+    List<Clock> modelClocks = new ClockRepository().getClocksRepository();
 
     public List<Clock> getModelClocks() {
         return modelClocks;
