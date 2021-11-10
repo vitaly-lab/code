@@ -1,38 +1,8 @@
 package com.watch.shop.view;
 
-import com.watch.shop.model.Clock;
-
 public class View {
 
-    public void displayClock(Clock clock) {
-                    System.out.println("Модель часов " + clock.getName() + " цвет " + clock.getColor() + " цена " + clock.getPrice()
-                    + " принцип работы " + clock.getSystemWork() + " дата продажи " + clock.getLocalDate());
+    public void printMessage(String message) {
+        System.out.println(message);
     }
-
-    public void exMenu () {
-        System.out.println (
-                "      ---------- Введите номер операции ---------- \n"
-               + " 1. Приложение выводит в консоль список всех товаров \n"
-               + " 2. Приложение сортирует и выводит в консоль товаров по: цене \n"
-               + " 3. Приложение сортирует и выводит в консоль товаров по: цвету \n"
-               + " 4. Приложение сортирует и выводит в консоль товаров по: дате поступления \n"
-               + " 5. Приложение показывает стоимость всех товаров \n"
-               + " 6. Приложение позволяет добавлять новые товары в магазин с консоли");
-
-    }
-    public void start () {
-        System.out.println("Введите пожалуйста число");
-    }
-
-    public void sMenu () {
-        System.out.println("Введите данные товара \n"
-                + " 1. Наименование часов \n"
-                + " 2. Цвет часов \n"
-                + " 3. Принцип работы \n"
-                + " 4. Цена часов \n"
-                + " 5. Дата поставки \n"
-                + "Товар вводим одной строкой через пробел, если хотим закончит"
-                + " ввод товар то необходимо нажать два раза Ввод (Enter) " );
-    }
-
 }
