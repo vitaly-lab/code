@@ -1,6 +1,7 @@
 package com.watch.shop.model;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ public class Model {
     List<Clock> modelClocks = new ClockRepository().getClocksRepository();
 
     public List<Clock> getModelClocks() {
-        return modelClocks;
+        return Collections.unmodifiableList(modelClocks);
     }
 
     public List<Clock> sortPrice() {
@@ -27,7 +28,7 @@ public class Model {
 
     public List<Clock> sortDate() {
         return modelClocks.stream()
-                .sorted(Comparator.comparing(Clock::getLocalDate).thenComparing(Clock::getLocalDate))
+                .sorted(Comparator.comparing(Clock::getManufactureDate).thenComparing(Clock::getManufactureDate))
                 .collect(Collectors.toList());
     }
 

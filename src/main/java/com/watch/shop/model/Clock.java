@@ -6,36 +6,36 @@ import java.time.LocalDate;
 public class Clock {
 
     private final String name;
-    private final String color;
-    private final String systemWork;
+    private final Color color;
+    private final MechanismType mechanismType;
     private final BigDecimal price;
-    private final LocalDate localDate;
+    private final LocalDate manufactureDate;
 
-    public LocalDate getLocalDate() {
-        return localDate;
+    public LocalDate getManufactureDate() {
+        return manufactureDate;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public String getSystemWork() {
-        return systemWork;
+    public MechanismType getMechanismType() {
+        return mechanismType;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public Clock(String name, String color, String systemWork, BigDecimal price, LocalDate localDate) {
+    public Clock(String name, Color color, MechanismType mechanismType, BigDecimal price, LocalDate localDate) {
         this.name = name;
         this.color = color;
-        this.systemWork = systemWork;
+        this.mechanismType = mechanismType;
         this.price = price;
-        this.localDate = localDate;
+        this.manufactureDate = localDate;
     }
 }

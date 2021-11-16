@@ -1,6 +1,8 @@
 package com.watch.shop.controller;
 
 import com.watch.shop.model.Clock;
+import com.watch.shop.model.Color;
+import com.watch.shop.model.MechanismType;
 import com.watch.shop.model.Model;
 import com.watch.shop.view.InputHandler;
 import com.watch.shop.view.View;
@@ -18,6 +20,7 @@ import static com.watch.shop.view.Constants.MAIN_MENU;
 import static com.watch.shop.view.Constants.TOTAL_SUM;
 
 public class Controller {
+    private static final int EXIT_COMMAND = 7;
 
     private final Model model;
     private final View view;
@@ -30,31 +33,35 @@ public class Controller {
     }
 
     public void run() {
-        mainMenu();
+        showMainMunu();
         showStartMessage();
 
         int command = readCommand();
-        switch (command) {
-            case 1:
-                showClocks(model.getModelClocks());
-                break;
-            case 2:
-                showClocks(model.sortPrice());
-                break;
-            case 3:
-                showClocks(model.sortColor());
-                break;
-            case 4:
-                showClocks(model.sortDate());
-                break;
-            case 5:
-                view.printMessage(TOTAL_SUM + model.sumPrice());
-                break;
-            case 6:
-                showMenu();
-                addProduct();
-                showClocks(model.getModelClocks());
-                break;
+        while (command != EXIT_COMMAND) {
+            switch (command) {
+                case 1:
+                    showClocks(model.getModelClocks());
+                    break;
+                case 2:
+                    showClocks(model.sortPrice());
+                    break;
+                case 3:
+                    showClocks(model.sortColor());
+                    break;
+                case 4:
+                    showClocks(model.sortDate());
+                    break;
+                case 5:
+                    view.printMessage(TOTAL_SUM + model.sumPrice());
+                    break;
+                case 6:
+                    showMenu();
+                    addProduct();
+                    showClocks(model.getModelClocks());
+                    break;
+            }
+            showMainMunu();
+            command = readCommand();
         }
     }
 
@@ -67,11 +74,16 @@ public class Controller {
     }
 
     private void displayClock(Clock clock) {
-        view.printMessage(String.format(CLOCK_MODEL,
-                clock.getName(), clock.getColor(), clock.getPrice(), clock.getSystemWork(), clock.getLocalDate()));
+        view.printMessage(String.format(
+                CLOCK_MODEL,
+                clock.getName(),
+                clock.getColor().toString(),
+                clock.getPrice(),
+                clock.getMechanismType().toString(),
+                clock.getManufactureDate()));
     }
 
-    private void mainMenu() {
+    private void showMainMunu() {
         view.printMessage(MAIN_MENU);
     }
 
@@ -107,15 +119,15 @@ public class Controller {
     private Clock buildClock(String inputData) {
         String[] clockAttributes = inputData.split(" ");
         String name = clockAttributes[0];
-        String color = clockAttributes[1];
-        String systemWork = clockAttributes[2];
+        Color color = Color.valueOf(clockAttributes[1].toUpperCase());
+        MechanismType mechanismType = MechanismType.valueOf(clockAttributes[2].toUpperCase());
         BigDecimal price = new BigDecimal(clockAttributes[3]);
         String date = clockAttributes[4];
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         LocalDate localDate = LocalDate.parse(date, format);
 
-        return new Clock(name, color, systemWork, price, localDate);
+        return new Clock(name, color, mechanismType, price, localDate);
     }
 }
 
